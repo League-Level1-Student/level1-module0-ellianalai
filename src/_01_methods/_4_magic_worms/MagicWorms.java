@@ -1,5 +1,8 @@
 package _01_methods._4_magic_worms;
 
+import java.awt.Color;
+import java.util.Random;
+
 import processing.core.PApplet;
 
 /*
@@ -30,33 +33,42 @@ import processing.core.PApplet;
  *    "red value", and i as the "green value" for some extra color coolness.
  */
 public class MagicWorms extends PApplet {
-    static final int WIDTH = 600;
+    static final int WIDTH = 500;
     static final int HEIGHT = 400;
-    int x;
-    int y;
-
+    float x;
+    float y;
+    static Color [] color = {Color.blue, Color.cyan, Color.pink, Color.green, Color.red};
+    Random r = new Random();
     @Override
     public void settings() {
-        size(WIDTH, HEIGHT);
+    	size(WIDTH, HEIGHT);
     }
 
     @Override
     public void setup() {
+    	
     	background(0,0,0);
+    	
     }
     	
 
     @Override
     public void draw() {
+    	
+    	Color c = color[r.nextInt(color.length)];
+    	x = r.nextInt(800);
+    	y = r.nextInt(400);
+    	makeMagical();
     	for(int i =0; i<300; i++) {
-    		fill(0,0,255);
-    		ellipse(x+=2,y+=1,3,3);
+    		fill(c.getRGB());
+    		ellipse(i,i	,3,3);
     	}
     }
 
     static public void main(String[] args) {
         PApplet.main(MagicWorms.class.getName());
     }
+    
 
     /*********************** DO NOT MODIFY THE CODE BELOW ********************/
     float frequency = 0.001f;
