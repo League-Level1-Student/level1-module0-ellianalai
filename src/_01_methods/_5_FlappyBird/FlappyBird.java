@@ -6,18 +6,20 @@ import processing.core.PImage;
 public class FlappyBird extends PApplet {
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
-    static PImage background;
-    static PImage bird;
-    static PImage top_pipe;
-    static PImage bottom_pipe;
-    static int pipe_x = 800;
-    static int bird_y = 100;;
-    static int bird_velocity = -10;
-    static int gravity = 1;
+    PImage background;
+    PImage bird;
+    PImage top_pipe;
+    PImage bottom_pipe;
+    int pipe_x = 800;
+    int bird_x = 100;
+    int bird_y = 100;;
+    int bird_velocity = -10;
+    int gravity = 1;
     int upperPipeHeight = (int) random(100, 400);
     int pipeGap = 150;
     int lowerY = upperPipeHeight + pipeGap;
     int bottom_pipe_height = HEIGHT - lowerY;
+    int score = 0;
     @Override
     public void settings() {
         size(WIDTH, HEIGHT);
@@ -44,14 +46,20 @@ public class FlappyBird extends PApplet {
     @Override
     public void draw() {
     	image(background, 0,0);
-    	if (bird_y < 600) {
+    	if (bird_y < 600 && intersect() == false) {
     		bird_y+=bird_velocity;
     		bird_velocity += gravity;
     		image(top_pipe, pipe_x,0);
         	pipe_x-=5;
-    		image(bird, 100,bird_y);
+    		image(bird, bird_x,bird_y);
     		image(bottom_pipe, pipe_x,lowerY);
     		pipes();
+    		if (bird_x == pipe_x) {
+    			score +=1;
+    			textSize(16);
+    			text("Score: " + score, 20, 20);
+    			fill(0,0,255);
+    		}
     	}
     	
     }
@@ -72,11 +80,17 @@ public class FlappyBird extends PApplet {
     		bottom_pipe.resize(50, bottom_pipe_height);
     	}
     }
-    public boolean intersect() {
-    	if (bird_y > upperPipeHeight ) {
-    		
+     public boolean intersect() {
+    	if (bird_y < upperPipeHeight && bird_x > pipe_x ) {
+    		return true;
     	}
-    	return true;
+    	else if (bird_y > lowerY && bird_x > pipe_x) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    	
     }
 
     static public void main(String[] args) {
