@@ -28,33 +28,45 @@ public class PhotoQuiz {
 		// “Copy Image Address” )
 
 		// 2. create a variable of type "Component" that will hold your image
-
+		Component image;
 		// 3. use the "createImage()" method below to initialize your Component
-
+		image = createImage("https://d1hjkbq40fs2x4.cloudfront.net/2016-07-16/files/cat-sample_1313.jpg");
 		// 4. add the image to the quiz window
-
+		quizWindow.add(image);
 		// 5. call the pack() method on the quiz window
-
+		quizWindow.pack();
 		// 6. ask a question that relates to the image
-
+		String question = JOptionPane.showInputDialog("What do you see?");
 		// 7. print "CORRECT" if the user gave the right answer
-
+		if (question.equalsIgnoreCase("a cat")) {
+			System.out.println("CORRECT");
+		}
+		else {
+			System.out.println("INCORRECT");
+		}
 		// 8. print "INCORRECT" if the answer is wrong
 
 		// 9. remove the component from the quiz window (you may not see the
 		// effect of this until step 12)
-
+		quizWindow.remove(image);
 		// 10. find another image and create it (might take more than one line
 		// of code)
-
+		
+		image = createImage("https://images.unsplash.com/photo-1620189507187-1ecc7e2e9cff?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y3V0ZSUyMGRvZ3xlbnwwfHwwfHx8MA%3D%3D");
+		
 		// 11. add the second image to the quiz window
-
+		quizWindow.add(image);
 		// 12. pack the quiz window
-
+		quizWindow.pack();
 		// 13. ask another question
-
+		String question_2 = JOptionPane.showInputDialog("What do you see?");
 		// 14+ check answer, say if correct or incorrect, etc.
-
+		if (question_2.equals("a dog")) {
+			System.out.println("CORRECT");
+		}
+		else {
+			System.out.println("INCORRECT");
+		}
 	}
 
 	private Component createImage(String imageUrl) {

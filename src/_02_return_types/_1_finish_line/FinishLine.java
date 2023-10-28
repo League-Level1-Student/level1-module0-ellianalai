@@ -30,7 +30,7 @@ public class FinishLine {
 		}
 			//6. Use a pop up to say the robot finished and how far it went
 		else {
-			JOptionPane.showMessageDialog(null, "You wen only " + distance + " feet");
+			JOptionPane.showMessageDialog(null, "You went only " + distance + " feet");
 		}
 		
 		//7. Else use a pop up to say the robot did not finish and how far it went

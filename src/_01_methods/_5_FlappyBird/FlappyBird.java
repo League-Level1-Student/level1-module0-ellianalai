@@ -47,6 +47,9 @@ public class FlappyBird extends PApplet {
     public void draw() {
     	image(background, 0,0);
     	if (bird_y < 600 && intersect() == false) {
+    		textSize(16);
+			text("Score: " + score, 20, 20);
+			fill(0,0,255);
     		bird_y+=bird_velocity;
     		bird_velocity += gravity;
     		image(top_pipe, pipe_x,0);
@@ -54,12 +57,18 @@ public class FlappyBird extends PApplet {
     		image(bird, bird_x,bird_y);
     		image(bottom_pipe, pipe_x,lowerY);
     		pipes();
-    		if (bird_x == pipe_x) {
+    		if (pipe_x == bird_x) {
     			score +=1;
     			textSize(16);
     			text("Score: " + score, 20, 20);
     			fill(0,0,255);
     		}
+    	}
+    	else {
+    		textSize(25);
+			text("Your final score is: " + score, 275, 300);
+			fill(0,0,255);
+    	
     	}
     	
     }
