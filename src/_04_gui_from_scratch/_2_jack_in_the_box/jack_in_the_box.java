@@ -1,11 +1,13 @@
 package _04_gui_from_scratch._2_jack_in_the_box;
 
+import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.print.DocFlavor.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,19 +15,19 @@ import javax.swing.JPanel;
 
 public class jack_in_the_box implements ActionListener{
 	int clicked = 0;
-	JLabel label = new JLabel();
 	JFrame frame = new JFrame();
-	JPanel panel = new JPanel();
+	
 	public void surprise() {
 		
 		frame.setVisible(true);
 		
 		JButton button = new JButton();
+		button.setText("Click here");
 		frame.add(button);
 		frame.pack();
 		button.addActionListener(this);
 		
-		frame.add(panel);
+		
 		
 		frame.pack();
 		
@@ -36,13 +38,14 @@ public class jack_in_the_box implements ActionListener{
 		clicked+=1;
 		if (clicked==5) {
 			image();
+			playSound("homer-woohoo.wav");
 		}
 		
 	}
 	
 	public void image() {
 		showPicture("jackInTheBox.png");
-		panel.add(label);
+		
 	}
 	
 	private void showPicture(String fileName) {
@@ -74,5 +77,15 @@ public class jack_in_the_box implements ActionListener{
 	          return new JLabel();
 	     }
 	}
+	
+	private void playSound(String soundFile) {
+	     try {
+	          AudioClip sound = JApplet.newAudioClip(getClass().getResource(soundFile));
+	          sound.play();
+	     } catch (Exception e) {
+	          e.printStackTrace();
+	     }
+	}
+
 
 }
